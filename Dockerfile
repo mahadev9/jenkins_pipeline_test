@@ -8,6 +8,6 @@ COPY . .
 EXPOSE 5016
 
 RUN npm install
-RUN npm build
+RUN npm run build
 
 CMD ["npm", "run", "start"]
