@@ -43,7 +43,7 @@ pipeline {
             sh 'docker version'
             sh 'docker rm $(docker stop $(docker ps -a -q --filter ancestor=maitri --format="{{.ID}}")) || true'
             sh 'docker build --tag maitri .'
-            sh 'docker run -p 5016:5016 maitri'
+            sh 'docker run -d -p 5016:5016 maitri'
         }
     }
 }
