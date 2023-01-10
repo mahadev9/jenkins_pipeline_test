@@ -42,6 +42,9 @@ pipeline {
     post {
         success {
             sh 'docker version'
+            sh 'docker rm $(docker stop $(docker ps -a -q --filter ancestor=swechchha-api-dev --format="{{.ID}}")) || true'
+            sh 'docker build --tag node-docker .'
+            sh 'docker run -d -p 5010:5010 swechchha-api-dev'
         }
     }
 }
