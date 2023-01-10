@@ -1,8 +1,8 @@
 
 FROM node:14.14.0
 
-WORKDIR /dev/api
+WORKDIR /usr/
 
 COPY . .
 
-CMD ["NODE_ENV=development", "npm", "run", "start"]
+CMD ["npm", "run", "start"]

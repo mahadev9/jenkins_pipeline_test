@@ -1,37 +1,51 @@
 
 pipeline {
-    agent { dockerfile }
     environment {
         HOME = '.'
     }
     stages {
-        stage('Clone') {
-            steps {
-                git branch: 'main',
-                    credentialsId: '5a977687-4cc0-4741-86fc-a07c7d41b122',
-                    url: 'https://github.com/mahadev9/jenkins_pipeline_test'
+        stage('Initialize agent for pipeline stages') {
+            agent {
+                docker {
+                    image 'node:14.14.0'
+                    args '-p 5010:5010'
+                }
+            }
+            stages {
+                stage('Clone') {
+                    steps {
+                        git branch: 'main',
+                            credentialsId: '',
+                            url: 'https://github.com/mahadev9/jenkins_pipeline_test'
+                    }
+                }
+                stage('Install Dependencies') {
+                    steps {
+                        sh 'node --version'
+                        sh 'npm install'
+                    }
+                }
+                stage('Test') {
+                    steps {
+                        sh 'npm run test'
+                    }
+                }
+                stage('Build') {
+                    steps {
+                        sh 'npm run build'
+                    }
+                }
+                stage('Start the server') {
+                    steps {
+                        sh 'npm run start'
+                    }
+                }
             }
         }
-        stage('Install Dependencies') {
-            steps {
-                sh 'node --version'
-                sh 'npm install'
-            }
+    }
+    post {
+        success {
+            echo "success"
         }
-        stage('Test') {
-            steps {
-                sh 'npm run test'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'npm run build'
-            }
-        }
-        // stage('Start the server') {
-        //     steps {
-        //         sh 'npm run start'
-        //     }
-        // }
     }
 }
