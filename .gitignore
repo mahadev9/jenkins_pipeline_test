@@ -7,3 +7,4 @@ build/Release
 logs
 *.log
 npm-debug.log*
+.DS_Store
