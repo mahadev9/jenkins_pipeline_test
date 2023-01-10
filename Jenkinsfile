@@ -15,7 +15,7 @@ pipeline {
                 stage('Clone') {
                     steps {
                         git branch: 'main',
-                            credentialsId: '',
+                            credentialsId: 'ce217cb0-ca88-4c65-896c-b3022396e3bb',
                             url: 'https://github.com/mahadev9/jenkins_pipeline_test'
                     }
                 }
