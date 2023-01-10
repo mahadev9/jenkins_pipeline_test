@@ -45,7 +45,7 @@ pipeline {
     }
     post {
         success {
-            echo "success"
+            docker --version
         }
     }
 }

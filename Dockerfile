@@ -5,4 +5,6 @@ WORKDIR /usr/
 
 COPY . .
 
+EXPOSE 5016
+
 CMD ["npm", "run", "start"]
