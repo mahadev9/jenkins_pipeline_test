@@ -36,17 +36,12 @@ pipeline {
                         sh 'npm run build'
                     }
                 }
-                stage('Start the server') {
-                    steps {
-                        sh 'npm run start &'
-                    }
-                }
             }
         }
     }
     post {
         success {
-            docker version
+            sh 'docker version'
         }
     }
 }
