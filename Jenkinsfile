@@ -45,7 +45,7 @@ pipeline {
     }
     post {
         success {
-            docker --version
+            docker version
         }
     }
 }
