@@ -7,4 +7,6 @@ COPY . .
 
 EXPOSE 5016
 
+RUN npm install
+
 CMD ["npm", "run", "start"]
