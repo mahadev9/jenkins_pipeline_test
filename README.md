@@ -14,6 +14,7 @@ In your terminal, run the following command:
 npx create-next-app --example with-jest-babel with-jest-babel-app
 ```
 
+
 ```bash
 yarn create next-app --example with-jest-babel with-jest-babel-app
 ```
