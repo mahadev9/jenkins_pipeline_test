@@ -18,7 +18,6 @@ npx create-next-app --example with-jest-babel with-jest-babel-app
 yarn create next-app --example with-jest-babel with-jest-babel-app
 ```
 
-
 ```bash
 pnpm create next-app --example with-jest-babel with-jest-babel-app
 ```
