@@ -8,7 +8,8 @@ pipeline {
         stage('Initialize agent for pipeline stages') {
             agent {
                 docker {
-                    image 'node:14.14.0'
+                    image 'mahadev9'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
             stages {
@@ -21,6 +22,7 @@ pipeline {
                 }
                 stage('Install Dependencies') {
                     steps {
+                        sh 'nvm use 14.14.0'
                         sh 'node --version'
                         sh 'npm install'
                     }
@@ -35,15 +37,13 @@ pipeline {
                         sh 'npm run build'
                     }
                 }
+                stage('Deploy') {
+                    sh 'docker version'
+                    sh 'docker rm $(docker stop $(docker ps -a -q --filter ancestor=maitri --format="{{.ID}}")) || true'
+                    sh 'docker build --tag maitri .'
+                    sh 'docker run -d -p 5016:5016 maitri'
+                }
             }
-        }
-    }
-    post {
-        success {
-            sh 'docker version'
-            sh 'docker rm $(docker stop $(docker ps -a -q --filter ancestor=maitri --format="{{.ID}}")) || true'
-            sh 'docker build --tag maitri .'
-            sh 'docker run -d -p 5016:5016 maitri'
         }
     }
 }
