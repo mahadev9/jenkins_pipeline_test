@@ -38,10 +38,12 @@ pipeline {
                     }
                 }
                 stage('Deploy') {
-                    sh 'docker version'
-                    sh 'docker rm $(docker stop $(docker ps -a -q --filter ancestor=maitri --format="{{.ID}}")) || true'
-                    sh 'docker build --tag maitri .'
-                    sh 'docker run -d -p 5016:5016 maitri'
+                    steps {
+                        sh 'docker version'
+                        sh 'docker rm $(docker stop $(docker ps -a -q --filter ancestor=maitri --format="{{.ID}}")) || true'
+                        sh 'docker build --tag maitri .'
+                        sh 'docker run -d -p 5016:5016 maitri'
+                    }
                 }
             }
         }
