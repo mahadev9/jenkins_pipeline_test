@@ -8,7 +8,7 @@ pipeline {
         stage('Initialize agent for pipeline stages') {
             agent {
                 docker {
-                    image 'mahadev9'
+                    image 'mahadev9/docker_nvm'
                     args '-v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
