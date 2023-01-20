@@ -22,6 +22,7 @@ pipeline {
                 }
                 stage('Install Dependencies') {
                     steps {
+                        sh 'exec bash'
                         sh 'nvm use 14.14.0'
                         sh 'node --version'
                         sh 'npm install'
@@ -46,6 +47,11 @@ pipeline {
                     }
                 }
             }
+        }
+    }
+    post {
+        always {
+            cleanWs()
         }
     }
 }
