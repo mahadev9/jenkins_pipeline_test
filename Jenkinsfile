@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                sh 'nvm use 14.14.0'
+                bash 'nvm use 14.14.0'
                 sh 'node --version'
                 sh 'npm install'
             }
