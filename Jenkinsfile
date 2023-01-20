@@ -9,7 +9,7 @@ pipeline {
             agent {
                 docker {
                     image 'mahadev9/docker_nvm'
-                    args '-v /var/run/docker.sock:/var/run/docker.sock'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock --entrypoint bash'
                 }
             }
             stages {
@@ -22,7 +22,6 @@ pipeline {
                 }
                 stage('Install Dependencies') {
                     steps {
-                        sh 'exec bash'
                         sh 'nvm use 14.14.0'
                         sh 'node --version'
                         sh 'npm install'
