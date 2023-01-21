@@ -2,7 +2,8 @@
 pipeline {
     agent {
         docker {
-            image 'mahadev9/docker_nvm'
+            // image 'mahadev9/docker_nvm'
+            dockerfile true
             args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
