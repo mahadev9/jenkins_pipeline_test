@@ -7,7 +7,7 @@ COPY . .
 
 EXPOSE 5016
 
-RUN nvm use 14.14.0
+RUN /bin/bash nvm use 14.14.0
 # RUN npm install
 # RUN npm run build
 
